@@ -25,8 +25,7 @@ function App() {
       try {
         const today = moment().subtract(30, 'days').format("YYYY-MM-DD");
         const result = await axios.get(`https://api.github.com/search/repositories?q=created:>${today}&sort=stars&order=desc${currentPage > 1 ? '&page=' + currentPage : ''}`)
-        console.log(result)
-        setTrendingRepos([...trendingRepos, ...result.data.items])
+        setTrendingRepos((prevRepos) => [...prevRepos, ...result.data.items])
       } catch (err) {
         setHasMore(false);
         console.error(err);
@@ -35,6 +34,9 @@ function App() {
     }
     getTrendingRepos();
   }, [currentPage])
+
+  
+  
   return (
     <div className="container">
       <div className="row justify-content-md-center">
