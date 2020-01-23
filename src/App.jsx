@@ -3,6 +3,7 @@ import RepoCard from './components/RepoCard.component';
 import axios from 'axios'
 import moment from 'moment'
 import './App.css'
+import Loading from './components/Loading.component';
 
 function App() {
   const [trendingRepos, setTrendingRepos] = useState([])
@@ -47,12 +48,7 @@ function App() {
         }
       </div>
       {
-        isLoading && (
-          <div className="d-flex align-items-center">
-            <strong>Loading...</strong>
-            <div className="spinner-border ml-auto" role="status" aria-hidden="true"></div>
-          </div>
-        )
+        isLoading && <Loading />
       }
     </div>
   );
